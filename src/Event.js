@@ -3,13 +3,13 @@ import React, { Component } from "react";
 class Event extends Component {
   state = {
     show: false,
-    showButton: 'show details',
+    showButton: "show details",
   };
   showDetails = () => {
     if (this.state.show === true) {
-      this.setState({ show: false, showButton: 'show details' });
+      this.setState({ show: false, showButton: "show details" });
     } else {
-      this.setState({ show: true, showButton: 'hide details' });
+      this.setState({ show: true, showButton: "hide details" });
     }
   };
 
