@@ -2,8 +2,10 @@ import React, { Component } from "react";
 
 class CitySearch extends Component {
   state = {
+    locations: this.props.locations,
     query: "",
     suggestions: [],
+    showSuggestions: false,
   };
 
   handleInputChanged = (event) => {
@@ -19,10 +21,12 @@ class CitySearch extends Component {
 
   handleItemClicked = (suggestion) => {
     this.setState({
-      query: suggestion,
+      query: suggestion
     });
-  };
-
+  
+    this.props.updateEvents(suggestion);
+  }
+  
   render() {
     return (
       <div className="CitySearch">
@@ -41,7 +45,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li>
+          <li onClick={() => this.handleItemClicked("all")}>
             <b>See all cities</b>
           </li>
         </ul>
