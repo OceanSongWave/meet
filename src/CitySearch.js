@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { InfoAlert } from './Alert';
+import "./styles.css";
 
 class CitySearch extends Component {
   state = {
@@ -26,7 +27,7 @@ class CitySearch extends Component {
         suggestions,
         infoText:''
       });
-    }
+    } 
   };
   // handleInputChanged = (event) => {
   //   const value = event.target.value;
@@ -42,7 +43,9 @@ class CitySearch extends Component {
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
-      showSuggestions: false
+      suggestions: [],
+      showSuggestions: false,
+      infoText:''
     });
   
     this.props.updateEvents(suggestion);
@@ -51,7 +54,9 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <div className="info-alert">
         <InfoAlert text={this.state.infoText} />
+        </div>
         <input
           type="text"
           className="city"

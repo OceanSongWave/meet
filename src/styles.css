@@ -1,0 +1,14 @@
+.info-alert {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+}
+
+.city {
+  margin-top: 75px;
+}
+
+.suggestions {
+  margin-top: 75px;
+}
