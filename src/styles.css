@@ -2,13 +2,32 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  font-weight: 700;
+  font-weight: bold;
+}
+
+.warning-alert {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+}
+
+.error-alert {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
 }
 
 .city {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .suggestions {
-  margin-top: 75px;
+  margin-top: 50px;
+}
+
+.numberOfEvents {
+  margin-top: 25px;
+  margin-bottom: 50px;
 }
