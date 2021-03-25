@@ -29,7 +29,7 @@ class NumberOfEvents extends Component {
       <div className="numberOfEvents">
         <label>Number of Events: </label>
         <input
-          type="text"
+          type="number"
           id="numberOfEvents__input"
           placeholder="Enter number"
           value={numberOfEvents}
