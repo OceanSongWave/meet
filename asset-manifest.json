@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/meet/static/css/main.85a86a4a.chunk.css",
+    "main.css": "/meet/static/css/main.5265e8dc.chunk.css",
     "main.js": "/meet/static/js/main.30dcc81c.chunk.js",
     "main.js.map": "/meet/static/js/main.30dcc81c.chunk.js.map",
     "runtime-main.js": "/meet/static/js/runtime-main.ead02bfe.js",
@@ -12,14 +12,14 @@
     "index.html": "/meet/index.html",
     "service-worker.js": "/meet/service-worker.js",
     "service-worker.js.map": "/meet/service-worker.js.map",
-    "static/css/main.85a86a4a.chunk.css.map": "/meet/static/css/main.85a86a4a.chunk.css.map",
+    "static/css/main.5265e8dc.chunk.css.map": "/meet/static/css/main.5265e8dc.chunk.css.map",
     "static/js/2.3427f06a.chunk.js.LICENSE.txt": "/meet/static/js/2.3427f06a.chunk.js.LICENSE.txt",
     "static/media/App.css": "/meet/static/media/background-bluesky.defcc4af.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.ead02bfe.js",
     "static/js/2.3427f06a.chunk.js",
-    "static/css/main.85a86a4a.chunk.css",
+    "static/css/main.5265e8dc.chunk.css",
     "static/js/main.30dcc81c.chunk.js"
   ]
 }
