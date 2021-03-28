@@ -77,7 +77,7 @@ module.exports.getAuthURL = async () => {
           calendarId: calendar_id,
           auth: oAuth2Client,
           timeMin: new Date().toISOString(),
-          maxResults: 32,
+          maxResults: 15,
           singleEvents: true,
           orderBy: 'startTime',
         },
