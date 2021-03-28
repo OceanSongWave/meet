@@ -11,6 +11,7 @@ import NProgress from 'nprogress';
  * The Set will remove all duplicates from the array.
  */
 
+ 
 const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -50,12 +51,6 @@ const getToken = async (code) => {
   return access_token;
 };
 
- export const extractLocations = (events) => {
-  var extractLocations = events.map((event) => event.location);
-  var locations = [...new Set(extractLocations)];
-  return locations;
-};
-
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
@@ -76,12 +71,27 @@ export const getAccessToken = async () => {
   return accessToken;
 }
 
+export const extractLocations = (events) => {
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
+  return locations;
+};
+
 export const getEvents = async () => {
   NProgress.start();
 
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
     return mockData;
+  }
+
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return {
+      events: JSON.parse(events).events,
+      locations: extractLocations(JSON.parse(events).events),
+    };
   }
 
   const token = await getAccessToken();
