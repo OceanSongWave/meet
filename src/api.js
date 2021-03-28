@@ -3,7 +3,7 @@ import { mockData } from './mock-data';
 import NProgress from 'nprogress';
 
 
-const removeQuery = () => {
+export const removeQuery = () => {
   if (window.history.pushState && window.location.pathname) {
     var newurl =
       window.location.protocol +
@@ -17,7 +17,7 @@ const removeQuery = () => {
   }
 };
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
@@ -36,13 +36,13 @@ const checkToken = async (accessToken) => {
  * The Set will remove all duplicates from the array.
  */
 
-const extractLocations = (events) => {
+export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
 
-const getEvents = async () => {
+export const getEvents = async () => {
   NProgress.start();
 
   if (window.location.href.startsWith("http://localhost")) {
@@ -75,7 +75,7 @@ const getEvents = async () => {
   }
 };
 
-const getAccessToken = async () => {
+export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
@@ -95,7 +95,7 @@ const getAccessToken = async () => {
   return accessToken;
 };
 
-const getToken = async (code) => {
+export const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
     'https://1p08fwk0ok.execute-api.us-east-2.amazonaws.com/dev/api/token' + '/' + encodeCode
@@ -109,5 +109,3 @@ const getToken = async (code) => {
 
   return access_token;
 };
-
-export { getEvents, getAccessToken, extractLocations, getToken, checkToken };
