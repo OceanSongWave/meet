@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { InfoAlert } from './Alert';
+import { InfoAlert } from "./Alert";
 import "./styles.css";
 
 class CitySearch extends Component {
@@ -12,22 +12,23 @@ class CitySearch extends Component {
 
   handleInputChanged = (event) => {
     const value = event.target.value;
-    this.setState({showSuggestions:true});
+    this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
     if (suggestions.length === 0) {
       return this.setState({
         query: value,
-        infoText: 'We can not find the city you are looking for. Please try another city.',
+        infoText:
+          "We can not find the city you are looking for. Please try another city.",
       });
     } else {
       return this.setState({
         query: value,
         suggestions,
-        infoText:''
+        infoText: "",
       });
-    } 
+    }
   };
 
   handleItemClicked = (suggestion) => {
@@ -35,17 +36,17 @@ class CitySearch extends Component {
       query: suggestion,
       suggestions: [],
       showSuggestions: false,
-      infoText:''
+      infoText: "",
     });
-  
+
     this.props.updateEvents(suggestion);
-  }
+  };
 
   render() {
     return (
       <div className="CitySearch">
         <div className="info-alert">
-        <InfoAlert text={this.state.infoText} />
+          <InfoAlert text={this.state.infoText} />
         </div>
         <input
           type="text"
@@ -57,7 +58,10 @@ class CitySearch extends Component {
           }}
           placeholder="Search for a city"
         />
-        <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}>
+        <ul
+          className="suggestions"
+          style={this.state.showSuggestions ? {} : { display: "none" }}
+        >
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
