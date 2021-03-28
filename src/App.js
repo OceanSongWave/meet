@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { OfflineAlert } from './Alert';
 import "./nprogress.css";
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: '20',
-    currentLocation: "all"
+    currentLocation: "all",
+    infoText: ""
   }
 
   updateEvents = (location, eventCount) => {
@@ -53,11 +55,31 @@ class App extends Component {
   //   });
   // }
   
+  // componentDidMount() {
+  //   this.mounted = true;
+  //   getEvents().then((events) => {
+  //     if (this.mounted) {
+  //       this.setState({ events, locations: extractLocations(events) });
+  //     }
+  //   });
+  // }
+
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
+      const { numberOfEvents } = this.state;
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        const filteredEvents = events.slice(0, numberOfEvents);
+        this.setState({ 
+          events: filteredEvents,
+          locations: extractLocations(events),
+        });
+      }
+
+      if (!navigator.onLine) {
+        this.setState({
+          infoText: 'You are currently offline.  The list of events may not be up-to-date.'
+        });
       }
     });
   }
@@ -71,6 +93,9 @@ class App extends Component {
       <div className="App">
         <h1>Meet App</h1>
         <h4>Select your nearest city</h4>
+        <div className="offlineAlert">
+          <OfflineAlert text={this.state.infoText} />
+        </div>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents
           updateEvents={this.updateEvents}
