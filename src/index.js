@@ -9,7 +9,6 @@ import * as atatus from 'atatus-spa';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Meet App</h1>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
