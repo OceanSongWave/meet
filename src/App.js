@@ -92,9 +92,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Meet App</h1>
+        <h1>Let's Meet!</h1>
         <h4>Select your nearest city</h4>
-        <div className="offlineAlert">
+        <div className="offline-alert">
           <WarningAlert text={this.state.infoText} />
         </div>
         <CitySearch

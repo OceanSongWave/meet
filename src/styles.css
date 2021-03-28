@@ -19,12 +19,19 @@
   font-weight: bold;
 }
 
+.offline-alert {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+}
+
 .city {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .suggestions {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .numberOfEvents {
