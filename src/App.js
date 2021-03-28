@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
-import { getEvents, extractLocations } from './api';
-import { OfflineAlert } from './Alert';
+import React, { Component } from "react";
+import "./App.css";
+import EventList from "./EventList";
+import CitySearch from "./CitySearch";
+import NumberOfEvents from "./NumberOfEvents";
+import { getEvents, extractLocations } from "./api";
+import { WarningAlert } from "./Alert";
 import "./nprogress.css";
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: '20',
+    numberOfEvents: "32",
     currentLocation: "all",
-    infoText: ""
-  }
+    infoText: "",
+  };
 
   updateEvents = (location, eventCount) => {
     const { currentLocation, numberOfEvents } = this.state;
@@ -43,7 +43,7 @@ class App extends Component {
         });
       });
     }
-  }
+  };
   // updateEvents = (location) => {
   //   getEvents().then((events) => {
   //     const locationEvents = (location === 'all') ?
@@ -54,7 +54,7 @@ class App extends Component {
   //     });
   //   });
   // }
-  
+
   // componentDidMount() {
   //   this.mounted = true;
   //   getEvents().then((events) => {
@@ -70,7 +70,7 @@ class App extends Component {
       const { numberOfEvents } = this.state;
       if (this.mounted) {
         const filteredEvents = events.slice(0, numberOfEvents);
-        this.setState({ 
+        this.setState({
           events: filteredEvents,
           locations: extractLocations(events),
         });
@@ -78,13 +78,14 @@ class App extends Component {
 
       if (!navigator.onLine) {
         this.setState({
-          infoText: 'You are currently offline.  The list of events may not be up-to-date.'
+          infoText:
+            "You are currently offline.  The list of events may not be up-to-date.",
         });
       }
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.mounted = false;
   }
 
@@ -94,9 +95,12 @@ class App extends Component {
         <h1>Meet App</h1>
         <h4>Select your nearest city</h4>
         <div className="offlineAlert">
-          <OfflineAlert text={this.state.infoText} />
+          <WarningAlert text={this.state.infoText} />
         </div>
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <CitySearch
+          locations={this.state.locations}
+          updateEvents={this.updateEvents}
+        />
         <NumberOfEvents
           updateEvents={this.updateEvents}
           numberOfEvents={this.state.numberOfEvents}
@@ -106,6 +110,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
