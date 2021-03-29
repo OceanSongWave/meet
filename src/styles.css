@@ -26,15 +26,14 @@
   font-weight: bold;
 }
 
-.city {
-  margin-top: 20px;
+/* .city {
+  margin-top: 0;
 }
 
 .suggestions {
-  margin-top: 20px;
-}
+  margin-top: 0;
+} */
 
 .numberOfEvents {
-  margin-top: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 }
