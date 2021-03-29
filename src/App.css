@@ -2,7 +2,7 @@
 
 .App {
   min-height: 100vh;
-  height: initial;
+  max-height: unset;
   text-align: center;
   padding: 5% 5%;
   background-image: url(img/background-bluesky.jpg);
