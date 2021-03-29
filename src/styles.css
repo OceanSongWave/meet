@@ -26,6 +26,11 @@
   font-weight: bold;
 }
 
+.showDetails {
+  background-color: seashell;
+  color: #121a52;
+}
+
 /* .city {
   margin-top: 0;
 }

@@ -39,12 +39,14 @@ class Event extends Component {
               rel="noreferrer"
               href={event.htmlLink}
             >
+              <br />
               See details on Google Calender
             </a>
           </div>
         )}
+        < br />
         <div>
-          <button className="showDetails" onClick={this.showDetails}>
+          <button className="details-btn" onClick={this.showDetails}>
             {this.state.showButton}
           </button>
         </div>
