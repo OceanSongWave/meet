@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import "./App.css";
 import EventList from "./EventList";
@@ -15,6 +16,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import EventGenre from "./EventGenre";
 
 class App extends Component {
   state = {
@@ -24,6 +26,31 @@ class App extends Component {
     currentLocation: "all",
     infoText: "",
   };
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      const { numberOfEvents } = this.state;
+      if (this.mounted) {
+        const filteredEvents = events.slice(0, numberOfEvents);
+        this.setState({
+          events: filteredEvents,
+          locations: extractLocations(events),
+        });
+      }
+
+      if (!navigator.onLine) {
+        this.setState({
+          infoText:
+            "You are currently offline.  The list of events may not be up-to-date.",
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   updateEvents = (location, eventCount) => {
     const { currentLocation, numberOfEvents } = this.state;
@@ -53,50 +80,6 @@ class App extends Component {
       });
     }
   };
-  // updateEvents = (location) => {
-  //   getEvents().then((events) => {
-  //     const locationEvents = (location === 'all') ?
-  //       events :
-  //       events.filter((event) => event.location === location);
-  //     this.setState({
-  //       events: locationEvents
-  //     });
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   this.mounted = true;
-  //   getEvents().then((events) => {
-  //     if (this.mounted) {
-  //       this.setState({ events, locations: extractLocations(events) });
-  //     }
-  //   });
-  // }
-
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      const { numberOfEvents } = this.state;
-      if (this.mounted) {
-        const filteredEvents = events.slice(0, numberOfEvents);
-        this.setState({
-          events: filteredEvents,
-          locations: extractLocations(events),
-        });
-      }
-
-      if (!navigator.onLine) {
-        this.setState({
-          infoText:
-            "You are currently offline.  The list of events may not be up-to-date.",
-        });
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
 
   getData = () => {
     const { locations, events } = this.state;
@@ -127,7 +110,8 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
         />
         <h4>Events in each city</h4>
-
+        <div className="data-vis-wrapper">
+          <EventGenre events={events} />
         <ResponsiveContainer height={400}>
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <CartesianGrid />
@@ -137,6 +121,7 @@ class App extends Component {
             <Scatter data={this.getData()} fill="#530d78" />
           </ScatterChart>
         </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} />
       </div>
     );
