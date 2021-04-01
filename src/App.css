@@ -160,6 +160,7 @@ input[type="number"] {
   flex-direction: column;
 }
 .data-vis-wrapper .recharts-responsive-container {
+  background-color: rgba(248, 248, 248, 0.35);
   min-width: 100%;
   display: flex;
 }
