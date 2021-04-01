@@ -7,7 +7,7 @@ import NumberOfEvents from "../NumberOfEvents";
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
 defineFeature(feature, (test) => {
-  test("If user hasn’t specified a number, 15 is the default number", ({
+  test("If user hasn’t specified a number, 25 is the default number", ({
     given,
     when,
     then,
@@ -17,10 +17,10 @@ defineFeature(feature, (test) => {
     let NumberOfEventsWrapper;
     when("app loaded", () => {
       // Appwrapper = mount(<App />);
-      NumberOfEventsWrapper = mount(<NumberOfEvents numberOfEvents={15} />);
+      NumberOfEventsWrapper = mount(<NumberOfEvents numberOfEvents={25} />);
     });
     then(/^the default number of shown events is (\d+)$/, (arg0) => {
-      expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(15);
+      expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(25);
     });
   });
 

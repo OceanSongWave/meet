@@ -22,7 +22,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: "15",
+    numberOfEvents: "25",
     currentLocation: "all",
     infoText: "",
   };
@@ -112,15 +112,15 @@ class App extends Component {
         <h4>Events in each city</h4>
         <div className="data-vis-wrapper">
           <EventGenre events={events} />
-        <ResponsiveContainer height={400}>
-          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid />
-            <XAxis type="category" dataKey="city" name="city" />
-            <YAxis type="number" dataKey="number" name="number of events" />
-            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-            <Scatter data={this.getData()} fill="#530d78" />
-          </ScatterChart>
-        </ResponsiveContainer>
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" />
+              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+              <Scatter data={this.getData()} fill="#530d78" />
+            </ScatterChart>
+          </ResponsiveContainer>
         </div>
         <EventList events={this.state.events} />
       </div>

@@ -4,7 +4,7 @@ import "./styles.css";
 
 class NumberOfEvents extends Component {
   state = {
-    numberOfEvents: 15,
+    numberOfEvents: 25,
   };
 
   handleInputChanged = (event) => {
@@ -12,9 +12,9 @@ class NumberOfEvents extends Component {
     this.props.updateEvents(null, value);
     this.setState({ numberOfEvents: value });
 
-    if (value < 1 || value > 15 || value === "") {
+    if (value < 1 || value > 25 || value === "") {
       this.setState({
-        infoText: "Please enter number between 1 ~ 15!",
+        infoText: "Please enter number between 1 ~ 25!",
       });
     } else {
       this.setState({
