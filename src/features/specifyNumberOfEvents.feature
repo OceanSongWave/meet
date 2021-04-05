@@ -1,9 +1,9 @@
 Feature: Specify number of events
 
-  Scenario: If user hasn’t specified a number, 25 is the default number
+  Scenario: If user hasn’t specified a number, 18 is the default number
     Given the user did not specify a number of events being shown
     When app loaded
-    Then the default number of shown events is 25
+    Then the default number of shown events is 18
 
   Scenario: User can change the number of events they want to see
     Given the list of elements has been loaded and the user did not specify a number of events he wants to see
