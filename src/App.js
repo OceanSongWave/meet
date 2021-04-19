@@ -22,7 +22,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: "22",
+    numberOfEvents: 22,
     currentLocation: "all",
     infoText: "",
   };

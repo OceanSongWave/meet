@@ -1,49 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from 'recharts';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { setData(() => getData()); }, [events]);
+  useEffect(() => {
+    setData(() => getData());
+  }, [events]);
 
   const getData = () => {
-    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+    const genres = [
+      "React",
+      "JavaScript",
+      "JavaScript!!",
+      "Node",
+      "Node.js",
+      "jQuery",
+      "jQuery,",
+      "AngularJS",
+      "Angular",
+      "AngularJS-Remote",
+    ];
 
-    const data = genres.map(genre => {
-      const value = events.filter(event => event.summary.split(' ').includes(genre)).length;
-      return {name: genre, value};
+    const data = genres.map((genre) => {
+      const value = events.filter((event) =>
+        event.summary.split(" ").includes(genre)
+      ).length;
+      return { name: genre, value };
     });
     return data;
   };
 
-  const colors = ["#632d91", "#23b048", "#d69831", "#e03a99", "#337ef5"];
+  const colors = [
+    "#632d91",
+    "#108732",
+    "#2dc41a",
+    "#c48a25",
+    "#f0df26",
+    "#e03a99",
+    "#b51470",
+    "#337ef5",
+    "#12306e",
+    "#7d0f23",
+  ];
 
   return (
-    <ResponsiveContainer height={400} >
-      <PieChart width={400} height={400}>
+    <ResponsiveContainer width="100%" height={400}>
+      <PieChart height={400}>
         <Pie
           data={data}
-          // cx={200}
-          // cy={200}
+          cx="50%"
+          cy="45%"
           labelLine={false}
-          outerRadius={110}
-          dataKey="value"
+          paddingAngle={8}
           label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+          innerRadius={65}
+          outerRadius={100}
+          fill="red"
+          dataKey="value"
+          stroke="none"
         >
-          {
-            data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} name={entry.name}/>
-            ))
-          }
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={colors[index % colors.length]}
+              name={entry.name}
+            />
+          ))}
         </Pie>
-        <Legend 
-          verticalAlign="top" 
-          // align="center"
+        <Legend
+          verticalAlign="bottom"
+          align="center"
           iconType="line"
           />
       </PieChart>
     </ResponsiveContainer>
   );
-}
+};
 
 export default EventGenre;
